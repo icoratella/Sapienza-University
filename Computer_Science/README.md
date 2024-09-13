@@ -1,1 +1,2 @@
-
+## Computer Science Exercises
+In this folder, I've uploaded some exercises that I completed for my Computer Science I and II exams during the first and second year of my bachelor's degree. These exercises are designed to test algorithmic programming skills, similar to those found on [HackerRank](https://www.hackerrank.com/), and then apply these skills to more challenging bioinformatics problems on [Rosalind](https://rosalind.info/problems/locations/).
