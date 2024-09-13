@@ -1,0 +1,66 @@
+***IterTools***
+
+> EX 1: itertools.product()
+from itertools import product
+
+a = input().split()
+A = list(map(int, a))
+b = input().split()
+B = list(map(int, b))
+l = list(product(A, B))
+for elm in l:
+    print(elm, end=' ')
+    
+    
+    
+
+> EX 2: itertools.permutations()
+from itertools import permutations
+
+s, k = input().split()
+k = int(k)
+l = list(permutations(s, k))
+l.sort()
+for elm in l:
+    print(''.join(elm))
+    
+    
+    
+
+
+> EX 3: itertools.combinations()
+from itertools import combinations
+
+s, k = input().split()
+k = int(k)
+l = []
+for j in range(1, k+1):
+    a = list(combinations(s, j))
+    b = []
+    for elm in a:
+        x = list(elm)
+        x.sort()
+        b.append(x)
+    b.sort()
+    l.extend(b)
+
+for elm in l:
+    print(''.join(elm))
+    
+    
+
+
+> EX 4: itertools.combinations_with_replacement()
+from itertools import combinations_with_replacement
+s, k = input().split()
+k = int(k)
+possibilities = list(combinations_with_replacement(s, k))
+def f (element):
+    t = list(element)
+    t.sort()
+    return ''.join(t)
+result = list(map(f , possibilities))
+
+result.sort()
+
+print(*result,sep='\n')

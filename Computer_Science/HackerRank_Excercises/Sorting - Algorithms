@@ -1,0 +1,340 @@
+***Sorting - Algorithms***
+
+> EX 1: Intro to Tutorial Challenges
+import math
+import os
+import random
+import re
+import sys
+
+def introTutorial(V, arr):
+    return arr.index(V)
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    V = int(input().strip())
+
+    n = int(input().strip())
+
+    arr = list(map(int, input().rstrip().split()))
+
+    result = introTutorial(V, arr)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
+    
+    
+    
+
+> EX 2: Insertion Sort part 1 - Inserting
+import math
+import os
+import random
+import re
+import sys
+
+def insertionSort1(n, arr):
+    last = arr[-1]
+    inserted = False
+    for i in range(1,n):
+        checking_position = -1-i
+        if arr[checking_position]>last:
+            arr[checking_position+1]=arr[checking_position]
+            print(*arr)
+        else:
+            arr[checking_position+1] = last
+            print(*arr)
+            inserted=True
+            break
+    if not inserted:
+        arr[0] = last
+        print(*arr)
+
+if __name__ == '__main__':
+    n = int(input().strip())
+
+    arr = list(map(int, input().rstrip().split()))
+
+    insertionSort1(n, arr)
+ 
+ 
+ 
+ 
+> EX 3: Insertion Sort part 2 - Sorting
+import math
+import os
+import random
+import re
+import sys
+
+def insertionSort1(n, arr):
+    last = arr[-1]
+    inserted = False
+    shift = 0
+    for i in range(1,n):
+        checking_position = -1-i #-1-(n-1) = -n
+        if arr[checking_position]>last:
+            arr[checking_position+1]=arr[checking_position]
+            shift+=1
+            # print(*arr)
+        else:
+            arr[checking_position+1] = last
+            # print(*arr)
+            inserted=True
+            break
+    if not inserted:
+        arr[0] = last
+        # print(*arr)
+    return shift
+    
+def insertionSort2(n, arr):
+    shifts = 0
+    for i in range(2,n+1):
+        to_be_ordered = arr[:i]
+        shifts += insertionSort1(i, to_be_ordered)
+        arr = to_be_ordered + arr[i:]
+        print(*arr)
+    return shifts
+if __name__ == '__main__':
+    n = int(input().strip())
+
+    arr = list(map(int, input().rstrip().split()))
+
+    insertionSort2(n, arr)
+    
+    
+    
+
+> EX 4: Correctness and loop invariant
+
+def insertion_sort(l):
+    for i in range(1, len(l)):
+        j = i-1
+        key = l[i]
+        while (j >= 0) and (l[j] > key): #CORRECTION IS >= RATHER THAN >#
+           l[j+1] = l[j]
+           j -= 1
+        l[j+1] = key
+
+m = int(input().strip())
+ar = [int(i) for i in input().strip().split()]
+insertion_sort(ar)
+print(" ".join(map(str,ar)))
+
+
+
+
+> EX 5: Quicksort 1 - Partition
+import math
+import os
+import random
+import re
+import sys
+
+def left_func(k,p):
+    return(k<p)
+
+def quickSort(arr):
+    p = arr[0]
+    left = list(filter(lambda k: k<p,arr))
+    equal = list(filter(lambda k: k==p,arr))
+    right = list(filter(lambda k: k>p,arr))
+    return left + equal + right
+
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input().strip())
+
+    arr = list(map(int, input().rstrip().split()))
+
+    result = quickSort(arr)
+
+    fptr.write(' '.join(map(str, result)))
+    fptr.write('\n')
+
+    fptr.close()
+    
+    
+    
+ 
+ > EX 6: Quicksort 2 - Sorting (https://www.hackerrank.com/challenges/quicksort2/problem) I found this excercise under the link of the first excercise (Quicksorting Challenges), under the title "Tutorial Challenges - Sorting)
+
+import math
+import os
+import random
+import re
+import sys
+
+ def quickSort(arr):
+    p = arr[0]
+    left = list(filter(lambda k: k<p,arr))
+    if (len(left)>1):
+        left = quickSort(left)
+    equal = list(filter(lambda k: k==p,arr))
+    right = list(filter(lambda k: k>p,arr))
+    if (len(right)>1):
+        right = quickSort(right)
+    res = left + equal + right
+    print(*res)
+    return res
+
+n = int(input())
+arr = input().split()
+arr = list(map(int, arr))
+quickSort(arr)
+    
+> EX 7: Counting Sort 1
+import math
+import os
+import random
+import re
+import sys
+def countingSort(arr):
+    result = [0 for i in range(100)]
+    for i in range(len(arr)):
+        result[arr[i]]+=1
+    return result
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input().strip())
+
+    arr = list(map(int, input().rstrip().split()))
+
+    result = countingSort(arr)
+
+    fptr.write(' '.join(map(str, result)))
+    fptr.write('\n')
+
+    fptr.close()
+    
+    
+    
+
+> EX 8: Counting Sort 2
+
+import math
+import os
+import random
+import re
+import sys
+
+def countingSort(arr):
+    result = [0 for i in range(100)]
+    for i in range(len(arr)):
+        result[arr[i]]+=1
+    sorted = []
+    for i in range(len(result)):
+        for _ in range(result[i]):
+            sorted.append(i)
+    return sorted
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input().strip())
+
+    arr = list(map(int, input().rstrip().split()))
+
+    result = countingSort(arr)
+
+    fptr.write(' '.join(map(str, result)))
+    fptr.write('\n')
+
+    fptr.close()
+
+
+
+
+> EX 9: Find the Median
+import math
+import os
+import random
+import re
+import sys
+
+def findMedian(arr):
+    srtd = sorted(arr)
+    return srtd[len(srtd)//2]
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input().strip())
+
+    arr = list(map(int, input().rstrip().split()))
+
+    result = findMedian(arr)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
+    
+    
+    
+    
+> EX 10: Running time of Algorithms (https://www.hackerrank.com/challenges/runningtime/problem)
+
+import math
+import os
+import random
+import re
+import sys
+
+def insertionSort1(n, arr):
+    # Write your code here
+    last = arr[-1]
+    inserted = False
+    shift = 0
+    for i in range(1,n):
+        checking_position = -1-i
+        if arr[checking_position]>last:
+            arr[checking_position+1]=arr[checking_position]
+            shift+=1
+            # print(*arr)
+        else:
+            arr[checking_position+1] = last
+            # print(*arr)
+            inserted=True
+            break
+    if not inserted:
+        arr[0] = last
+        # print(*arr)
+    return shift
+
+def runningTime(arr):
+    n = len(arr)
+    shifts = 0
+    for i in range(2,n+1):
+        to_be_ordered = arr[:i]
+        shift = insertionSort1(i, to_be_ordered)
+        shifts += shift
+        print(shift)
+        arr = to_be_ordered + arr[i:]
+        # print(*arr)
+    return shifts
+
+
+if _name_ == '_main_':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input().strip())
+
+    arr = list(map(int, input().rstrip().split()))
+
+    result = runningTime(arr)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
+
+
+
+    
+
+
+

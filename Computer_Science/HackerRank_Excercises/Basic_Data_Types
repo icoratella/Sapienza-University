@@ -1,0 +1,91 @@
+ *** Basic Data-types ***
+ 
+> EX 1: List comprehension
+
+if __name__ == '__main__':
+    x = int(input())
+    y = int(input())
+    z = int(input())
+    n = int(input())
+    
+l = [[i, j, k] for i in range(0, x+1) for j in range(0, y+1)
+      for k in range(0, z+1) if i+j+k != n]
+print(l)
+
+
+
+
+> EX 2: Find the Runner-Up Score!
+
+if __name__ == '__main__':
+    n = int(input())
+    arr = map(int, input().split())
+    
+s_arr = sorted(arr)
+m = s_arr[-1]
+i = -2
+while s_arr[i] == m:
+    i -= 1
+print(s_arr[i])
+
+
+
+
+> EX 3: Finding the percentage
+
+if __name__ == '__main__':
+    n = int(input())
+    student_marks = {}
+    for _ in range(n):
+        name, *line = input().split()
+        scores = list(map(float, line))
+        student_marks[name] = scores
+    query_name = input()
+
+def avg(l):
+    return sum(l)/len(l)
+
+print("{:0.2f}".format(avg(student_marks[query_name])))
+
+
+
+
+> EX 4: Lists
+
+def interprete(l, command):
+    cmd = command.split()
+    if cmd[0] == 'insert':
+        l.insert(int(cmd[1]), int(cmd[2]))
+    elif cmd[0] == 'print':
+        print(l)
+    elif cmd[0] == 'remove':
+        l.remove(int(cmd[1]))
+    elif cmd[0] == 'append':
+        l.append(int(cmd[1]))
+    elif cmd[0] == 'sort':
+        l.sort()
+    elif cmd[0] == 'pop':
+        l.pop()
+    elif cmd[0] == 'reverse':
+        l.reverse()
+
+if __name__ == '__main__':
+    N = int(input())
+    commands = []
+    for _ in range(N):
+        commands.append(input())
+    l = []
+    for command in commands:
+        interprete(l, command)
+        
+        
+        
+        
+> Ex 5: Tuples
+if __name__ == '__main__':
+    n = int(raw_input())
+    integer_list = map(int, raw_input().split())
+    
+    newinteger_list = tuple(integer_list)
+    print(hash(newinteger_list))
+

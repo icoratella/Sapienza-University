@@ -1,0 +1,51 @@
+*** Sets ***
+
+> EX 1: Symmetric Difference
+def symmetric_difference(A, B):
+    return A.difference(B).union(B.difference(A))
+
+size = int(input())
+riga1 = input().split()
+a = set(list(map(int, riga1)))
+size2 = int(input())
+riga2 = input().split()
+b = set(list(map(int, riga2)))
+diff = list(symmetric_difference(a, b))
+diff.sort()
+for elm in diff:
+    print(elm)
+    
+    
+    
+
+EX 2: .add()
+s = set()
+for i in range(int(input())):
+    s.add(input())
+print(len(s))
+
+
+
+
+EX 3: .union()
+n = int(input())
+arr1 = map(int, input().split()) 
+b = int(input())
+arr2 = map(int, input().split())
+
+newarr1 = set(arr1)
+newarr2 = set(arr2)
+print(len(newarr1.union(newarr2)))
+
+
+
+
+EX 4: .intersection()
+a = int(input())
+arr1 = map(int, input().split())
+b = int(input())
+arr2 = map(int, input().split())
+newarr1 = set(arr1)
+newarr2 = set(arr2)
+print(len(newarr1.intersection(newarr2)))
+

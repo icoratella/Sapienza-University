@@ -1,0 +1,369 @@
+***Strings - Algorithms***
+
+> EX 1: CamelCase
+import math
+import os
+import random
+import re
+import sys
+def camelcase(s):
+    uppercase = list(filter(lambda k: k.upper()==k, s))
+    return len(uppercase)+1
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    s = input()
+
+    result = camelcase(s)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
+
+
+
+EX 2: Mars Exploration    
+import math
+import os
+import random
+import re
+import sys
+def marsExploration(s):
+    #s = 'SoSTOTSBS'
+    changed = 0
+    for i in range(int(len(s)/3)):
+        substring = s[3*i:3*(i+1)]
+        if substring[0]!='S':
+            changed+=1
+        if substring[1]!='O':
+            changed+=1
+        if substring[2] != 'S':
+            changed += 1
+    return changed
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    s = input()
+
+    result = marsExploration(s)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
+    
+    
+    
+
+> EX 3: Hakerrank in a String!
+import math
+import os
+import random
+import re
+import sys
+
+def hackerrankInString(s):
+    ideal = 'hackerrank'
+    s = list(s)
+    positions = []
+    for char in ideal:
+        try:
+            if len(positions)>0:
+                positions.append(s.index(char, positions[-1]+1))
+            else:
+                positions.append(s.index(char))
+        except:
+            return 'NO'
+    if len(positions)!=len(ideal):
+        return 'NO'
+    else:
+        if sorted(positions)==positions:
+            return 'YES'
+        else:
+            return 'NO'
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    q = int(input().strip())
+
+    for q_itr in range(q):
+        s = input()
+
+        result = hackerrankInString(s)
+
+        fptr.write(result + '\n')
+
+    fptr.close()
+
+
+
+
+> EX 4: Pangrams
+import math
+import os
+import random
+import re
+import sys
+
+import string
+def pangrams(arr):
+    all_chars = set(string.ascii_lowercase)
+    lower_chars_in_string = s.lower()
+    all_chars_in_string = set(lower_chars_in_string)
+    if all_chars_in_string.issuperset(all_chars):
+        return 'pangram'
+    else:
+        return 'not pangram'
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    s = input()
+
+    result = pangrams(s)
+
+    fptr.write(result + '\n')
+
+    fptr.close()
+
+
+
+
+EX 5: Alternating Characters
+import math
+import os
+import random
+import re
+import sys
+
+def alternatingCharacters(s):
+    # Write your code here
+    l = list(s)
+    to_be_deleted = 0
+    for i in range(len(l)):
+        if i!= len(l)-1 and l[i]==l[i+1]:
+            to_be_deleted += 1
+    return to_be_deleted
+    
+    
+EX 6: Grading students
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'gradingStudents' function below.
+#
+# The function is expected to return an INTEGER_ARRAY.
+# The function accepts INTEGER_ARRAY grades as parameter.
+#
+
+def gradingStudents(grades):
+    rounded_grades = []
+  
+    for grade in grades:
+        if grade < 38:
+            rounded_grades.append(grade)
+        else:
+            next_multiple_of_5 = (grade // 5 + 1) * 5
+            
+            if (next_multiple_of_5 - grade) < 3:
+                rounded_grades.append(next_multiple_of_5)
+            else:
+                
+                rounded_grades.append(grade)
+    
+    
+    return rounded_grades
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    grades_count = int(input().strip())
+
+    grades = []
+
+    for _ in range(grades_count):
+        grades_item = int(input().strip())
+        grades.append(grades_item)
+
+    result = gradingStudents(grades)
+
+    fptr.write('\n'.join(map(str, result)))
+    fptr.write('\n')
+
+    fptr.close()
+    
+EX 7: Apple and Orange
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'countApplesAndOranges' function below.
+#
+# The function accepts following parameters:
+#  1. INTEGER s
+#  2. INTEGER t
+#  3. INTEGER a
+#  4. INTEGER b
+#  5. INTEGER_ARRAY apples
+#  6. INTEGER_ARRAY oranges
+def countApplesAndOranges(s, t, a, b, apples, oranges):
+    num_app_on_house = 0
+    num_oran_on_house = 0
+    
+    for app_dist in apples:
+        app_pos = a + app_dist
+        if app_pos >= s and app_pos <= t:
+            num_app_on_house += 1
+    
+    for orange_dist in oranges:
+        orange_pos = b + orange_dist
+        
+        if orange_pos >= s and orange_pos <= t:
+            num_oran_on_house += 1
+    
+    print(num_app_on_house)
+    print(num_oran_on_house)
+    if __name__ == '__main__':
+    first_multiple_input = input().rstrip().split()
+
+    s = int(first_multiple_input[0])
+
+    t = int(first_multiple_input[1])
+
+    second_multiple_input = input().rstrip().split()
+
+    a = int(second_multiple_input[0])
+
+    b = int(second_multiple_input[1])
+
+    third_multiple_input = input().rstrip().split()
+
+    m = int(third_multiple_input[0])
+
+    n = int(third_multiple_input[1])
+
+    apples = list(map(int, input().rstrip().split()))
+
+    oranges = list(map(int, input().rstrip().split()))
+
+    countApplesAndOranges(s, t, a, b, apples, oranges)
+
+
+EX 8: Breaking the records
+
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'breakingRecords' function below.
+#
+# The function is expected to return an INTEGER_ARRAY.
+# The function accepts INTEGER_ARRAY scores as parameter.
+#
+
+def breakingRecords(scores):
+    min_score = scores[0]
+    max_score = scores[0]
+    num_min_records_broken = 0
+    num_max_records_broken = 0
+    
+    for score in scores:if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input().strip())
+
+    scores = list(map(int, input().rstrip().split()))
+
+    result = breakingRecords(scores)
+
+    fptr.write(' '.join(map(str, result)))
+    fptr.write('\n')
+
+    fptr.close()
+EX 9:
+        if score < min_score:
+            min_score = score
+            num_min_records_broken += 1
+        
+        if score > max_score:
+            max_score = score
+            num_max_records_broken += 1
+    
+    return [num_max_records_broken, num_min_records_broken]
+    
+    if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input().strip())
+
+    scores = list(map(int, input().rstrip().split()))
+
+    result = breakingRecords(scores)
+
+    fptr.write(' '.join(map(str, result)))
+    fptr.write('\n')
+
+    fptr.close()
+    
+EX 9: Cats and a mouse
+
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the catAndMouse function below.
+def catAndMouse(x, y, z):
+    dist_cat_a = abs(x - z)
+    dist_cat_b = abs(y - z)
+    
+    if dist_cat_a < dist_cat_b:
+        return "Cat A"
+    elif dist_cat_b < dist_cat_a:
+        return "Cat B"
+    else:
+        return "Mouse C"
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    q = int(input())
+
+    for q_itr in range(q):
+        xyz = input().split()
+
+        x = int(xyz[0])
+
+        y = int(xyz[1])
+
+        z = int(xyz[2])
+
+        result = catAndMouse(x, y, z)
+
+        fptr.write(result + '\n')
+
+    fptr.close()
+
+
+    

@@ -1,0 +1,89 @@
+> EX 1: Collections.Counter()
+from collections import Counter
+X = int(input())
+A = list(map(int, input().split()))
+shoe_size_dict = dict(Counter(A))
+N = int(input())
+guadagno = 0
+for _ in range(N):
+    shoe_size, x = list(map(int, input().split()))
+    if shoe_size in shoe_size_dict.keys():
+        shoe_size_dict[shoe_size] -= 1
+        guadagno += x
+        if shoe_size_dict[shoe_size] == 0:
+            shoe_size_dict.pop(shoe_size)
+
+print(guadagno)
+
+
+
+
+> EX 2: DefaultDict tutorial
+from collections import defaultdict
+
+n, m = list(map(int, input().split()))
+
+A = defaultdict(list)
+
+for i in range(n):
+    A[input()].append(i+1)
+
+for i in range(m):
+    X = A[input()]
+    if len(X) != 0:
+        print(*X)
+    else:
+        print(-1)    
+        
+        
+        
+        
+> EX 3: Collections.namedtuple()
+
+from collections import namedtuple
+
+Student = namedtuple('Student', 'ID,MARKS,CLASS,NAME')
+
+N = int(input())
+nomi_colonne = input().split()
+# ['ID', 'CLASS', 'MARK', 'NAME']
+# MARKS      CLASS      NAME       ID
+id = nomi_colonne.index('ID')
+marks = nomi_colonne.index('MARKS')
+classe = nomi_colonne.index('CLASS')
+name = nomi_colonne.index('NAME')
+studenti = []
+for _ in range(N):
+    riga = input().split()
+    studente = Student(int(riga[id]), int(
+        riga[marks]), int(riga[classe]), riga[name])
+    studenti.append(studente)
+
+
+s = 0
+for studente in studenti:
+    s += studente.MARKS
+
+print(s/len(studenti))
+
+
+
+
+> EX 4: Collections.OrderedDict()
+from collections import OrderedDict
+
+ordinary_dictionary = OrderedDict()
+
+N = int(input())
+for _ in range(N):
+    riga = input()
+    price = riga.split()[-1]
+    name = riga[:-(len(price)+1)]
+    price = int(price)
+    if name in ordinary_dictionary.keys():
+        ordinary_dictionary[name] += price
+    else:
+        ordinary_dictionary[name] = price
+
+for elm in ordinary_dictionary.items():
+    print(elm[0], elm[1])

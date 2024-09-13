@@ -1,0 +1,49 @@
+*** Strings***
+> EX 1: sWAP cASE
+def swap_case(s):
+    return s.swapcase()
+
+if __name__ == '__main__':
+    s = raw_input()
+    result = swap_case(s)
+    print result
+    
+    
+    
+> EX 2: String Split and Join
+def split_and_join(line):
+    newstr = line.replace(" ", "-")
+    return(newstr)
+    
+if __name__ == '__main__':
+    line = raw_input()
+    result = split_and_join(line)
+    print result
+    
+    
+    
+> EX 3: What's Your Name?
+def print_full_name(first, last):
+    text = "Hello firstname lastname! You just delved into python."
+    newtext = text.replace('firstname', first_name)
+    newtext_ = newtext.replace('lastname', last_name)
+    print(newtext_)
+    return()
+if __name__ == '__main__':
+    first_name = raw_input()
+    last_name = raw_input()
+    print_full_name(first_name, last_name)
+    
+    
+    
+> EX 4: Mutations
+def mutate_string(string, position, character):
+    l = list(string)
+    l[position] = character;
+    string = ''.join(l);
+    return string
+if __name__ == '__main__':
+    s = raw_input()
+    i, c = raw_input().split()
+    s_new = mutate_string(s, int(i), c)
+    print s_new

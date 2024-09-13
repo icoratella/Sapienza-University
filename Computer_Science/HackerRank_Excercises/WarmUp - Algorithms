@@ -1,0 +1,278 @@
+*** WarmUp - Algorithms ***
+> EX 1: Solve Me First
+def solveMeFirst(a,b):
+    return a + b
+    
+num1 = int(input())
+num2 = int(input())
+res = solveMeFirst(num1,num2)
+print(res)
+
+> EX 2: Simple Array Sum
+import math
+import os
+import random
+import re
+import sys
+
+def simpleArraySum(ar):
+    s = 0
+    for el in ar:
+        s+=el
+    return s
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    ar_count = int(input().strip())
+
+    ar = list(map(int, input().rstrip().split()))
+
+    result = simpleArraySum(ar)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
+    
+    
+    
+    
+> EX 3: Compare the triplets
+import math
+import os
+import random
+import re
+import sys
+
+def compareTriplets(a, b):
+    punti_alice = 0
+    punti_bob = 0
+    for i in range(len(a)):
+        if a[i]>b[i]:
+           punti_alice+=1
+        elif b[i]>a[i]:
+           punti_bob+=1
+    return [punti_alice, punti_bob]
+    
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    a = list(map(int, input().rstrip().split()))
+
+    b = list(map(int, input().rstrip().split()))
+
+    result = compareTriplets(a, b)
+
+    fptr.write(' '.join(map(str, result)))
+    fptr.write('\n')
+
+    fptr.close()
+    
+    
+    
+    
+> EX 4: A Very Big Sum
+import math
+import os
+import random
+import re
+import sys
+
+def aVeryBigSum(ar):
+    s = 0
+    for el in ar:
+        s+=el
+    return s
+
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    ar_count = int(input().strip())
+
+    ar = list(map(int, input().rstrip().split()))
+
+    result = aVeryBigSum(ar)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
+    
+    
+    
+    
+> EX 5: Diagonal difference
+import math
+import os
+import random
+import re
+import sys
+
+def diagonalDifference(arr):
+    ld = 0
+    rd = 0
+    for i in range(len(arr)):
+        ld += arr[i][i]
+        rd += arr[i][-i-1]
+    return abs(ld-rd) 
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input().strip())
+
+    arr = []
+
+    for _ in range(n):
+        arr.append(list(map(int, input().rstrip().split())))
+
+    result = diagonalDifference(arr)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
+    
+    
+    
+    
+> EX 6: Plus Minus
+import math
+import os
+import random
+import re
+import sys
+
+def plusMinus(arr):
+    positive = 0
+    negative = 0
+    zeros = 0
+    for el in arr:
+        if el>0:
+            positive+=1
+        elif el<0:
+            negative+=1
+        else:
+            zeros+=1
+    positive = positive/len(arr)
+    negative = negative/len(arr)
+    zeros = zeros/len(arr)
+    print('{:.6f}'.format(positive))
+    print('{:.6f}'.format(negative))
+    print('{:.6f}'.format(zeros))
+if __name__ == '__main__':
+    n = int(input().strip())
+
+    arr = list(map(int, input().rstrip().split()))
+
+    plusMinus(arr)
+    
+    
+    
+    
+> EX 7: Staircase
+import math
+import os
+import random
+import re
+import sys
+
+def staircase(n):
+    for i in range(1,n+1):
+        l = [' ' for j in range(n-i)]
+        l.extend(['#' for j in range(i)])
+        print(''.join(l))
+
+if __name__ == '__main__':
+    n = int(input().strip())
+
+    staircase(n)
+    
+    
+    
+    
+> EX 8: Mini-Max Sum
+import math
+import os
+import random
+import re
+import sys
+
+def miniMaxSum(arr):
+    arr.sort()
+    a = sum(arr)- arr[4]
+    b = sum(arr) -arr[0]
+    print(a,b)
+    
+if __name__ == '__main__':
+
+    arr = list(map(int, input().rstrip().split()))
+
+    miniMaxSum(arr)
+    
+    
+    
+   
+   
+> EX 9: Birthday Cake Candles
+import math
+import os
+import random
+import re
+import sys
+
+def birthdayCakeCandles(candles):
+    return candles.count(max(candles))
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    candles_count = int(input().strip())
+
+    candles = list(map(int, input().rstrip().split()))
+
+    result = birthdayCakeCandles(candles)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
+    
+    
+    
+    
+> EX 10: Time Conversion
+import math
+import os
+import random
+import re
+import sys
+
+def timeConversion(s):
+    hour = s[:2]
+    if hour=='12':
+        if s[-2]=='P':
+            return s[:-2]
+        else:
+            return '00'+s[2:8]
+    else:
+        if s[-2]=='P':
+            return str(int(hour)+12)+s[2:8]
+        else:
+            return s[:-2]
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    s = input()
+
+    result = timeConversion(s)
+
+    fptr.write(result + '\n')
+
+    fptr.close()
+
+
+
+
+
+
+
