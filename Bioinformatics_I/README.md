@@ -487,3 +487,124 @@ summary(new_res1[new_res1$padj < 0.05 & new_res1$log2FoldChange < -1  ,])
 ```
 
 At a padj of 0.05 and using as log2FoldChange threshold the value -1, we can observe 5551 DOWN-regulated genes.
+
+```markdown
+# Gene Ontology (GO) Enrichment Analysis
+
+## UP-REGULATED - LUNG
+
+### Finding the Gene Symbol Column
+```R
+resSig <- subset(new_res, padj < 0.1)
+upReg <- subset(resSig, log2FoldChange > 1)
+upReg$symbol <- mapIds(org.Hs.eg.db,
+                       keys=rownames(upReg),
+                       column="SYMBOL",
+                       keytype="ENSEMBL",
+                       multiVals="first")
+```
+
+## Gene Ontology (GO) Enrichment Analysis
+
+### Performing Enrichment Analysis
+We perform the Enrichment analysis for Biological Process (BP) and Molecular Function (MF) using the `enrichGO()` function.
+
+```R
+GO_BP_UP <- enrichGO(upReg$symbol, OrgDb = "org.Hs.eg.db", 
+                     keyType = "SYMBOL", ont = "BP")
+GO_MF_UP <- enrichGO(upReg$symbol, OrgDb = "org.Hs.eg.db", 
+                     keyType = "SYMBOL", ont = "MF")
+```
+
+### Dot Plots for Up-Regulated Genes
+
+#### Biological Process (BP) - LUNG
+```R
+dotplot(GO_BP_UP, title = "UpBioProcess")
+```
+![immagine](https://github.com/user-attachments/assets/d14c5bc6-cabc-4e32-9043-f56425ecf0b0)
+
+#### Molecular Function (MF) - LUNG
+```R
+dotplot(GO_MF_UP, title = "UpMolFunctions")
+```
+![immagine](https://github.com/user-attachments/assets/61de7c3b-22ea-4e76-b838-7069f68cd2ba)
+
+#### Biological Process (BP) - COLON
+```R
+dotplot(GO_BP_UP1, title = "UpBioProcess")
+```
+![immagine](https://github.com/user-attachments/assets/b65fe184-743f-4c60-a5fa-c8638b90dc41)
+
+#### Molecular Function (MF) - COLON
+```R
+dotplot(GO_MF_UP1, title = "UpMolFunctions")
+```
+![immagine](https://github.com/user-attachments/assets/5fd5e831-a200-455b-95dc-c519ca5a4635)
+
+## DOWN-REGULATED - LUNG
+
+### Identifying Down-Regulated Genes
+```R
+downReg <- subset(resSig, log2FoldChange < -1)
+downReg$symbol <- mapIds(org.Hs.eg.db,
+                         keys=rownames(downReg),
+                         column="SYMBOL",
+                         keytype="ENSEMBL",
+                         multiVals="first")
+```
+
+### GO Enrichment for Down-Regulated Genes
+```R
+GO_BP_DOWN <- enrichGO(downReg$symbol, OrgDb = "org.Hs.eg.db", 
+                       keyType = "SYMBOL", ont = "BP")
+GO_MF_DOWN <- enrichGO(downReg$symbol, OrgDb = "org.Hs.eg.db", 
+                       keyType = "SYMBOL", ont = "MF")
+```
+
+#### Biological Process (BP) - LUNG
+```R
+dotplot(GO_BP_DOWN, title = "Downregualted Biological Process")
+```
+![immagine](https://github.com/user-attachments/assets/2e4ea2ac-9fc1-4c98-b035-59c421eb6c20)
+
+#### Molecular Function (MF) - LUNG
+```R
+dotplot(GO_MF_DOWN, title = "Downregualted Molecular Functions")
+```
+![immagine](https://github.com/user-attachments/assets/177e79b3-afb7-4700-8b1b-0267922be755)
+
+### COLON
+
+#### Identifying Down-Regulated Genes - COLON
+```R
+downReg1 <- subset(resSig1, log2FoldChange < -1)
+downReg1$symbol <- mapIds(org.Hs.eg.db,
+                         keys=rownames(downReg1),
+                         column="SYMBOL",
+                         keytype="ENSEMBL",
+                         multiVals="first")
+```
+
+#### GO Enrichment for Down-Regulated Genes - COLON
+```R
+GO_BP_DOWN1 <- enrichGO(downReg1$symbol, OrgDb = "org.Hs.eg.db", 
+                        keyType = "SYMBOL", ont = "BP")
+GO_MF_DOWN1 <- enrichGO(downReg1$symbol, OrgDb = "org.Hs.eg.db", 
+                        keyType = "SYMBOL", ont = "MF")
+```
+
+#### Biological Process (BP) - COLON
+```R
+dotplot(GO_BP_DOWN1, title = "Downregualted Biological Process")
+```
+![immagine](https://github.com/user-attachments/assets/f3f48b27-7787-45c3-9e8e-c2eb7a02f32e)
+
+#### Molecular Function (MF) - COLON
+```R
+dotplot(GO_MF_DOWN1, title = "Downregualted Molecular Functions")
+```
+![immagine](https://github.com/user-attachments/assets/7f3538a5-2ce0-4ab7-a85f-b443118f44ee)
+
+
+```
